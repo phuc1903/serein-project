@@ -6,10 +6,10 @@ function Navbar() {
     return (
         <NavbarBootstrap.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-                <NavItem title="Home" />
-                <NavItem title="Shop" />
-                <NavItem title="about" />
-                <NavItem title="contact" />
+                <NavItem children="Home" />
+                <NavItem children="Shop" />
+                <NavItem children="about" />
+                <NavItem children="contact" />
             </Nav>
         </NavbarBootstrap.Collapse>
     );
