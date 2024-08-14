@@ -1,0 +1,19 @@
+* text=auto eol=lf
+
+*.js text
+*.jsx text
+*.scss text
+
+*.png binary
+*.jpg binary
+*.gif binary
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
