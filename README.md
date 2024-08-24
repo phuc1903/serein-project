@@ -1,7 +1,7 @@
 
 # Serein Laravel 11 with Inertia and React 18
 
-The jewelry product is a combination of Laravel 11 with Inertia and React 18
+A website selling jewelry under the brand Serein Jewelry. Using Larvel 11 with Inertia and React 18 technology.
 
 
 
@@ -9,12 +9,6 @@ The jewelry product is a combination of Laravel 11 with Inertia and React 18
 ## Authors
 
 - [@phuc1903](https://github.com/phuc1903)
-
-
-## Demo
-
-Insert gif or link to demo
-
 
 ## 🛠 Skills
 This project is built using the following technologies:
@@ -43,7 +37,7 @@ This project is built using the following technologies:
 Clone the project
 
 ```bash
-git clone git@github.com:phuc1903/serein-fullstack.git
+git clone git@github.com:phuc1903/serein-project.git
 ```
 
 Go to the project directory
@@ -79,7 +73,7 @@ npm run dev
 ```
 
 ```bash
-php artisan server
+php artisan serve
 ```
 ## Build Applications
 
