@@ -43,7 +43,7 @@ git clone git@github.com:phuc1903/serein-project.git
 Go to the project directory
 
 ```bash
-cd serein-fullstack
+cd serein-project
 ``` 
 
 Install dependencies
