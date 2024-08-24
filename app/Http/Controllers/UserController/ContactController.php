@@ -10,6 +10,6 @@ class ContactController extends Controller
 
     public function index() {
 
-        return view('article.contact');
+        return inertia('User/Contact/Index');
     }
 }

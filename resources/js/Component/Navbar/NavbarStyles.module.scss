@@ -1,3 +1,60 @@
-.hello {
-    color: red;
+.avatar {
+    width: 30px;
+    height: 30px;
+}
+.navbarItem {
+    position: relative;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: var(--transition);
+
+    &.show {
+        &.nav-link {
+                color: red;
+        }
+    }
+
+    .dropdown-menu {
+        width: 200px;
+    }
+
+    .dropdownItem {
+        font-size: 1.2rem;
+        transition: var(--transition);
+        width: 150px;
+
+        &:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+    }
+
+    &::before {
+        position: absolute;
+        display: block;
+        content: "";
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        right: 0;
+        background-color: var(--primary);
+        transition: var(--transition);
+    }
+
+    &:hover,
+    &.active {
+        color: var(--primary);
+
+        & > a {
+            color: var(--primary);
+        }
+        s &::before {
+            width: 100%;
+        }
+    }
+
+    &:hover::before {
+        left: 0;
+    }
 }

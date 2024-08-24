@@ -9,6 +9,6 @@ class AboutController extends Controller
 {
     public function index() {
 
-        return view('article.about');
+        return inertia('User/About/Index');
     }
 }

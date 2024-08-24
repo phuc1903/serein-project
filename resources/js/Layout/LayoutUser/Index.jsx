@@ -1,11 +1,39 @@
+import { usePage } from "@inertiajs/react";
+import clsx from "clsx";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import NavbarMain from "@/Component/Navbar/Index";
-    
-import clsx from "clsx";
-import styles from "./LayoutUser.module.scss";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import Toastify from "@/Component/Notification/Toastify/Index";
 
 function LayoutUser({ children }) {
+
+    const { flash } = usePage().props;
+
+    useEffect(() => {
+        if (flash.notify) {
+            switch (flash.notify.type) {
+                case "success":
+                    toast.success(flash.notify.message);
+                    break;
+                case "error":
+                    toast.error(flash.notify.message);
+                    break;
+                case "warning":
+                    toast.warning(flash.notify.message);
+                    break;
+                case "info":
+                    toast.info(flash.notify.message);
+                    break;
+                default:
+                    toast.success(flash.notify.message);
+                    break;
+            }
+        }
+    }, [flash]);
+
+
     return (
         <>
             <header>
@@ -21,12 +49,16 @@ function LayoutUser({ children }) {
                             />
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <NavbarMain/>
+                        <NavbarMain />
                     </Container>
                 </Navbar>
             </header>
 
-            <main>{children}</main>
+            <main>
+                {children}
+            </main>
+
+            <Toastify/>
         </>
     );
 }

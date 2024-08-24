@@ -25,6 +25,7 @@ class ProductResource extends JsonResource
             'bestseller' => $this->bestseller,
             'like' => $this->product_like,
             'slug' => $this->slug,
+            'categories' => ProductCategoriesResource::collection($this->whenLoaded('categories')),
             'created_at' => (new Carbon($this->created_at))->format('d-m-y H-i-s'),
             'updated_at' => (new Carbon($this->updated_at))->format('d-m-y H-i-s'),
         ];

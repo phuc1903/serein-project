@@ -11,29 +11,30 @@ class ShopController extends Controller
 {
     public function index(string $category_id = null, string $keyword = null)
     {
-        $categories = Category::all();
+        // $categories = Category::all();
 
-        $query = Product::query();
+        // $query = Product::query();
 
-        if ($category_id !== null) {
-            $query->where('category_id', '=', $category_id);
-            $totalProducts = Product::where('category_id', '=', $category_id)->count();
-        } 
-        else if($keyword !== null) {
-            $query->where('title', 'LIKE', '%'.$keyword.'%');
-            $totalProducts = Product::where('title', 'LIKE', '%'.$keyword.'%')->count();
-        }    
-        else {
-            $totalProducts = Product::count();
-        }
+        // if ($category_id !== null) {
+        //     $query->where('category_id', '=', $category_id);
+        //     $totalProducts = Product::where('category_id', '=', $category_id)->count();
+        // } 
+        // else if($keyword !== null) {
+        //     $query->where('title', 'LIKE', '%'.$keyword.'%');
+        //     $totalProducts = Product::where('title', 'LIKE', '%'.$keyword.'%')->count();
+        // }    
+        // else {
+        //     $totalProducts = Product::count();
+        // }
 
-        $products = $query->latest()->paginate(6);
+        // $products = $query->latest()->paginate(6);
 
-        return view('shop', [
-            'products' => $products,
-            'categories' => $categories,
-            'totalProducts' => $totalProducts,
-        ]);
+        // return view('shop', [
+        //     'products' => $products,
+        //     'categories' => $categories,
+        //     'totalProducts' => $totalProducts,
+        // ]);
+        return inertia('User/Shop/Index');
     }
 
     public function search(Request $request)

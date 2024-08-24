@@ -3,23 +3,18 @@
 namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class DetailController extends Controller
 {
-    public function index(string $id)
+    public function index(Product $product)
     {
-        $product = Product::findOrFail($id);
+        $product = ProductResource::make($product);
 
-        $categoryId = $product->category_id;
-
-        // dd(session('cart'));
-
-        $relatedProduct = Product::where('category_id', $categoryId)->where('id', '!=', $id)->limit(4)->get();
-
-        // dd($relatedProduct);
-
-        return view('detail', ['product' => $product, 'relatedProduct' => $relatedProduct]);
+        return inertia('User/Detail/Index', [
+            'product' => $product,
+        ]);
     }
 }

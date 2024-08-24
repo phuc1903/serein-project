@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -36,7 +38,11 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'user' => fn () =>  $request->user() ? $request->user()->only('id', 'name', 'email', 'avatar') : null,
+            'flash' => [
+                'notify' => $request->session()->get('notify'),
+            ],
+            'categories' => CategoryResource::collection(Category::all()),
         ]);
     }
 }

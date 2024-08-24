@@ -1,0 +1,181 @@
+.card {
+    height: 500px !important;
+
+    .image {
+        height: 300px;
+    }
+    
+    .title {
+        color: var(--primary);
+        font-size: 2.4rem;
+    }
+
+    .description {
+        color: var(--secondary);
+    }
+
+    .buttons {
+        margin-top: auto;
+        margin-bottom: 12px;
+
+        .button {
+            font-size: 1.8rem;
+        }
+
+        .buttonMid {
+            border-radius: 0;
+        }
+
+        .buttonLeft {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .buttonRight {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        height: 450px !important;
+        
+        .image {
+            height: 250px;
+        }
+        
+        .title {
+            font-size: 2rem;
+        }
+    
+        .description {
+            height: 30px;
+            margin-bottom: 14px;
+        }
+    
+        .buttons .button {
+            font-size: 1.6rem;
+        }
+    }
+
+    @media (max-width: 1000px) {
+        height: 400px !important;
+        
+        .image {
+            height: 200px;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+        }
+    
+        .description {
+            height: 25px;
+            margin-bottom: 12px;
+        }
+    
+        .buttons .button {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        height: 350px !important;
+        
+        .image {
+            height: 180px;
+        }
+        
+        .title {
+            font-size: 1.6rem;
+        }
+    
+        .description {
+            height: 20px;
+            margin-bottom: 10px;
+        }
+    
+        .buttons .button {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        height: 300px !important;
+        
+        .image {
+            height: 150px;
+        }
+        
+        .title {
+            font-size: 1.4rem;
+        }
+    
+        .description {
+            height: 15px;
+            margin-bottom: 8px;
+        }
+    
+        .buttons .button {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 400px) {
+        height: 250px !important;
+        
+        .image {
+            height: 120px;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+        }
+    
+        .description {
+            height: 10px;
+            margin-bottom: 6px;
+        }
+    
+        .buttons .button {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+
+.products {
+    position: relative;
+    .title {
+        color: var(--secondary);
+    }
+
+    .to {
+        color: var(--secondary);
+        position: relative;
+
+        &::before {
+            position: absolute;
+            display: block;
+            content: "";
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+    
+        &.active {
+            color: var(--primary);
+    
+            a {
+                color: var(--primary);
+            }
+    
+            &::before {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,14 +1,65 @@
 @import 'normalize.css';
 
+$primary: #DEAF54;
+$secondary: #022C31;
+$black: #000;
+$white: #fff;
+$transition: all .3s linear;
+$border-radius: 4px;
+$error: #bf1650;
 
 :root {
-    --primary: #DEAF54;
-    --secondary: #022C31;
-    --black: #000;
-    --white: #fff;
+    --primary: #{$primary};
+    --secondary: #{$secondary};
+    --black: #{$black};
+    --white: #{$white};
+    --transition: #{$transition};
+    --border-radius: #{$border-radius};
+    --error: #{$error};
+}
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
 }
 
 html {
     font-size: 62.5%;
     font-family: serif;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+    transition: var(--transition);
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.text-outline-primary {
+    color: var(--white);
+    transition: var(--transition);
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.swiper {
+
+    .swiper-pagination {
+        position: relative;
+        bottom: 0 !important;
+        margin-top: 24px;
+    
+        .swiper-pagination-bullet {
+    
+            &.swiper-pagination-bullet-active {
+                background-color: var(--primary);
+            }
+        }
+    }
 }

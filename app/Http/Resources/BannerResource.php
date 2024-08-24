@@ -19,7 +19,7 @@ class BannerResource extends JsonResource
             'id' => $this->id,
             'collection' => $this->collection,
             'title' => $this->title,
-            'link' => route($this->link),
+            'link' => $this->link,
             'description' => $this->description,
             'image' => $this->image,
             'banner_show' => $this->banner_show,

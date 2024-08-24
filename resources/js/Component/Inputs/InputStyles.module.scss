@@ -1,0 +1,50 @@
+.input {
+    border: 1px solid var(--secondary) !important;
+    height: 38px;
+    border-radius: var(--border-radius) !important;
+    font-size: 1.2rem !important;
+    font-style: italic !important;
+    font-weight: 400;
+    color: var(--primary) !important;
+    transition: var(--transition);
+
+    &.error {
+        border: 2px solid var(--error) !important;
+    }
+
+    &:focus {
+        color: var(--secondary) !important;
+        border: 1px solid var(--primary) !important;
+        box-shadow: none !important;
+    }
+}
+
+.label {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.inputGroup {
+    
+    .inputGroupItem {
+        border-right: none !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        
+        &:focus + .icon {
+            border: 1px solid var(--primary);
+        }
+    }
+    .icon {
+        background-color: var(--white);
+        font-size: 1.6rem;
+        transition: var(--transitions);
+        cursor: pointer;
+        border: 1px solid var(--secondary);
+
+        &.error {
+            border: 2px solid var(--error);
+            border-left: none;
+        }
+    }
+}

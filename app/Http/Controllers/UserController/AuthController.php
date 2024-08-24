@@ -4,18 +4,17 @@ namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLoginRequest;
-use App\Jobs\SendCreateAccountMailJob;
+use App\Http\Requests\StoreRegisterRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -45,70 +44,57 @@ class AuthController extends Controller
     // Page Đăng nhập
     public function login()
     {
-        // if(Auth::check()){
-        //     dd(Auth::user());
-        // }
         return inertia('User/Auth/Login/Index');
     }
     
     // Handler đăng nhập
     public function loginStore(StoreLoginRequest $request)
     {
-        // dd($request);
+        $request->validated();
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            // $favoritesByUser = Auth::user()->favorites;
-            // if ($favoritesByUser) {
-            //     $totalFavorites = count($favoritesByUser);
-            //     session()->put('totalFavorites', $totalFavorites);
-            // } 
-            // dd('ok');
             $request->session()->regenerate();
-
-            return redirect()->intended('/')->with('message', 'Đăng nhập thành công!');
+            return redirect()->route('home')->with('notify', ['type' => 'success', 'message' => 'Đăng nhập thành công']);
         }
-        return back()->withErrors(['fail' => 'Email hoặc mật khẩu sai'])->with('error', 'Đăng nhập thất bại');
-
+        return back()->with('notify', ['type' => 'error', 'message' => 'Đăng nhập thất bại']);
     }
 
     // Page đăng ký
     public function register()
     {
-        return view('auth.register');
+        return inertia('User/Auth/Register/Index');
     }
 
     // Handler đăng ký
     public function registerStore(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'min:5', 'max:50'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'confirmed']
+            'name' => 'required|min:3|max:40',
+            'email' => 'required|email',
+            'password' => 'required|min:4|max:50|confirmed'
         ]);
+        // $user = User::create([
+        //     'name' => $request->fullname,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password)
+        // ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        // // dispatch(new SendCreateAccountMailJob($user));
 
-        // dispatch(new SendCreateAccountMailJob($user));
+        // Auth::login($user);
 
-        Auth::login($user);
+        // // event(new Registered($user));
 
-        event(new Registered($user));
-
-        return redirect()->route('home')->with("success", "Đăng ký thành công và bạn đã được đăng nhập");
+        // return redirect()->route('home')->with("notify", ['type' => 'success', 'message' => 'Đăng ký thành công và bạn đã được đăng nhập']);
     }
 
     // Handler đăng xuất tài khoản
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
-
-        $request->session()->invalidate(); // Xóa tất cả session
+        $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home')->with('success', 'Bạn đã đăng xuất tài khoản thành công');
+        return redirect()->route('home')->with('notify', ['type' => 'success', 'message' => 'Đăng xuất thành công']);
     }
 
     // Page Đổi mật khẩu
@@ -137,7 +123,7 @@ class AuthController extends Controller
 
     // Page gửi email xác nhận đổi mật khẩu
     public function forgotPassword() {
-        return view('auth.forgot-password');
+        return inertia('User/Auth/ForgotPassword/Index');
     }
 
     // Sending token resset password
@@ -154,7 +140,7 @@ class AuthController extends Controller
     }
 
     public function passwordReset(string $token) {
-        return view('auth.password-new', ['token' => $token]);
+        return inertia('User/Auth/ResetPassword/Index', ['token' => $token]);
     }
 
     public function passwordUpdate(Request $request) {
