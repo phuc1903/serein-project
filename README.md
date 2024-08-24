@@ -31,6 +31,8 @@ This project is built using the following technologies:
 
 - Please also check [Laravel](https://laravel.com/docs/11.x) and [Inertia](https://inertiajs.com/) requirements
 
+## Note
+- When you want to run the website, start the server emulation software like [XAMPP](https://www.apachefriends.org/download.html) or [Laragon](https://laragon.org/download/)....
 
 ## Run Locally
 
